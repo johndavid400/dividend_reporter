@@ -1,5 +1,7 @@
 DividendReporter::Application.routes.draw do
 
+  resources :roles
+
   resources :stocks
 
   root :to => 'users#index'

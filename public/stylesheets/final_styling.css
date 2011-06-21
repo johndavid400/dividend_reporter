@@ -1,0 +1,58 @@
+
+body {
+  background: white;  
+  color: black;
+
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+table{
+  width: 100%;
+}
+
+th{
+  background: #b1e37f;     
+}
+
+.odd td{
+  background: white;
+}
+
+.even td{
+  background: #e5e5e5;
+}
+
+#new_book{
+  width: 500px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+#post_comment{
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#search_for_book{
+
+}
+
+#new_user_signup{
+  padding: 10px;
+  width: 333px;
+  background: white;
+  margin-left: auto;
+  margin-right: auto;
+}
