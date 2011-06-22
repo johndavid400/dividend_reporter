@@ -1,8 +1,10 @@
+require 'ruby-debug'
 class StocksController < ApplicationController
-  # GET /stocks
-  # GET /stocks.xml
+
   def index
     @stocks = Stock.all
+    @quotes = YahooFinance::get_quotes( YahooFinance::StandardQuote, @stocks.map(&:symbol).join(",") )
+    @quotes_ext = YahooFinance::get_quotes( YahooFinance::ExtendedQuote, @stocks.map(&:symbol).join(",") )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,10 +12,11 @@ class StocksController < ApplicationController
     end
   end
 
-  # GET /stocks/1
-  # GET /stocks/1.xml
   def show
     @stock = Stock.find(params[:id])
+
+    quotes = YahooFinance::get_quotes( YahooFinance::StandardQuote, @stock.symbol )
+    @quote = quotes[@stock.symbol.upcase]
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,8 +24,6 @@ class StocksController < ApplicationController
     end
   end
 
-  # GET /stocks/new
-  # GET /stocks/new.xml
   def new
     @stock = Stock.new
 
@@ -32,13 +33,10 @@ class StocksController < ApplicationController
     end
   end
 
-  # GET /stocks/1/edit
   def edit
     @stock = Stock.find(params[:id])
   end
 
-  # POST /stocks
-  # POST /stocks.xml
   def create
     @stock = Stock.new(params[:stock])
 
@@ -53,8 +51,6 @@ class StocksController < ApplicationController
     end
   end
 
-  # PUT /stocks/1
-  # PUT /stocks/1.xml
   def update
     @stock = Stock.find(params[:id])
 
@@ -69,8 +65,6 @@ class StocksController < ApplicationController
     end
   end
 
-  # DELETE /stocks/1
-  # DELETE /stocks/1.xml
   def destroy
     @stock = Stock.find(params[:id])
     @stock.destroy

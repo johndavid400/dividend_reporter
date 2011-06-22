@@ -1,14 +1,24 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @stock.name %>
-</p>
+<h1> You are viewing <%= @stock %>.</h1>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Symbol</th>
+    <th>Last Trade</th>
+    <th>Day High</th>
+    <th>Day Low</th>
+  </tr>
 
-<p>
-  <b>Symbol:</b>
-  <%= @stock.symbol %>
-</p>
+  <tr>
+    <td><%= @quote.name %></td>
+    <td><%= @quote.symbol %></td>
+    <td><%= @quote.lastTrade %></td>
+    <td><%= @quote.dayHigh %></td>
+    <td><%= @quote.dayLow %></td>
+  </tr>
+
+</table>
+
 
 <%= link_to 'Edit', edit_stock_path(@stock) %> |
 <%= link_to 'Back', stocks_path %>

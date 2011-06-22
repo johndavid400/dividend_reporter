@@ -8,4 +8,4 @@ gem 'sorcery'
 
 gem 'yahoofinance'
 
-gem 'rake', '0.8.7'
+gem 'ruby-debug19'

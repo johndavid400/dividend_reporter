@@ -9,5 +9,13 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :user_roles
 
   validates_confirmation_of :password, :on => :create, :message => "should match confirmation"
-end
 
+  def has_role?(name)
+    roles.map(&:role).include?(name.to_s)
+  end
+
+  def to_s
+    username
+  end
+
+end

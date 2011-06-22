@@ -1,25 +1,30 @@
 <h1>Listing stocks</h1>
-
 <table>
   <tr>
-    <th>Name</th>
     <th>Symbol</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Stock Name</th>
+    <th>Last Price</th>
+    <th>Dividend/Share</th>
+    <th>Pay Date</th>
   </tr>
 
 <% @stocks.each do |stock| %>
   <tr>
-    <td><%= stock.name %></td>
-    <td><%= stock.symbol %></td>
-    <td><%= link_to 'Show', stock %></td>
-    <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
-    <td><%= link_to 'Destroy', stock, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to @quotes[stock.symbol.upcase].symbol, stock %></td>
+    <td><%= @quotes[stock.symbol.upcase].name %></td>
+    <td><%= @quotes[stock.symbol.upcase].lastTrade %></td>
+    <td><%= @quotes_ext[stock.symbol.upcase].dividendPerShare %></td>
+    <td><%= @quotes_ext[stock.symbol.upcase].exDividendDate %></td>
+
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Stock', new_stock_path %>
+<% if current_user.has_role?(:admin) %>
+  <%= link_to 'New Stock', new_stock_path %>
+  <%= link_to 'User Page', users_path %>
+<% end %>
+
+<h2><%= current_user %> is logged in.</h2>
