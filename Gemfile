@@ -7,3 +7,5 @@ gem 'mysql2', '~> 0.2.6'
 gem 'sorcery'
 
 gem 'yahoofinance'
+
+gem 'rake', '0.8.7'
