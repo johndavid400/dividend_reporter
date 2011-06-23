@@ -1,10 +1,10 @@
 DividendReporter::Application.routes.draw do
 
   resources :roles
-
   resources :stocks
+  
+  root :to => 'user_sessions#new'
 
-  root :to => 'users#index'
   resources :user_sessions
   resources :users
 
