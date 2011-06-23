@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
-  
+
     @stocks = current_user.stocks
     @quotes = YahooFinance::get_quotes( YahooFinance::StandardQuote, @stocks.map(&:symbol).join(",") )
     @quotes_ext = YahooFinance::get_quotes( YahooFinance::ExtendedQuote, @stocks.map(&:symbol).join(",") )
@@ -43,7 +43,6 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         format.html { redirect_to(:users, :notice => 'User was successfully created.') }
-       #format.html { redirect_to(@user, :notice => 'User was successfully created.') }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
@@ -75,4 +74,12 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def unwatch
+    @stock = Stock.find(params[:id])
+    UserStock.destroy(:user_id => current_user.id, :stock_id => @stock.id)
+    flash[:notice] = "Stock was removed from your watch list"
+    redirect_to users_path 
+  end
+
 end

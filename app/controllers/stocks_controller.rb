@@ -74,4 +74,12 @@ class StocksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def watch
+    @stock = Stock.find(params[:id])
+    UserStock.create(:user_id => current_user.id, :stock_id => @stock.id)
+    flash[:notice] = "Stock was added to your watch list"
+    redirect_to stocks_path 
+  end
+
 end

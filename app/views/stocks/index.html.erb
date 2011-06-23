@@ -6,6 +6,7 @@
     <th>Last Price</th>
     <th>Dividend/Share</th>
     <th>Pay Date</th>
+    <th>Add</th>
   </tr>
 
 <% @stocks.each do |stock| %>
@@ -15,6 +16,7 @@
     <td><%= @quotes[stock.symbol.upcase].lastTrade %></td>
     <td><%= @quotes_ext[stock.symbol.upcase].dividendPerShare %></td>
     <td><%= @quotes_ext[stock.symbol.upcase].exDividendDate %></td>
+    <td><%= link_to 'Watch', stocks_watch_path(stock) %></td>
   </tr>
 <% end %>
 </table>
