@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @user = current_user.id
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -10,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+  
     @stocks = current_user.stocks
     @quotes = YahooFinance::get_quotes( YahooFinance::StandardQuote, @stocks.map(&:symbol).join(",") )
     @quotes_ext = YahooFinance::get_quotes( YahooFinance::ExtendedQuote, @stocks.map(&:symbol).join(",") )

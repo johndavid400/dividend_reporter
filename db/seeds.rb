@@ -29,6 +29,9 @@ Stock.create(:symbol => "DHF")
 Role.create(:role => "admin")
 Role.create(:role => "normal")
 
+UserRole.create(:user_id => "1", :role_id => "1")
+UserRole.create(:user_id => "2", :role_id => "2")
+
 UserStock.create(:user_id => "1", :stock_id => "1")
 UserStock.create(:user_id => "1", :stock_id => "2")
 UserStock.create(:user_id => "1", :stock_id => "3")

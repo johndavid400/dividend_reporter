@@ -1,26 +1,29 @@
 <h1>Listing users</h1>
 
+
 <table>
   <tr>
     <th>Username</th>
     <th>Email</th>
+    <% if current_user.has_role?(:admin) %>
     <th></th>
     <th></th>
     <th></th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= link_to user.username, user %></td>
-    <td><%= user.email %></td>
-
-    <% if current_user %>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
     <% end %>
-
   </tr>
-<% end %>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to user.username, user %></td>
+      <td><%= user.email %></td>
+
+      <% if current_user.has_role?(:admin) %>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
+
+    </tr>
+  <% end %>
 </table>
 
 <br />
