@@ -9,12 +9,20 @@
 
 <table>
   <tr>
-    <th>User Stocks</th>
+    <th>Symbol</th>
+    <th>Stock Name</th>
+    <th>Last Price</th>
+    <th>Dividend/Share</th>
+    <th>Pay Date</th>
   </tr>
 
   <% @stocks.each do |stock| %>
     <tr>
-      <td><%= stock.symbol %></td>
+      <td><%= link_to @quotes[stock.symbol.upcase].symbol, stock %></td>
+      <td><%= @quotes[stock.symbol.upcase].name %></td>
+      <td><%= @quotes[stock.symbol.upcase].lastTrade %></td>
+      <td><%= @quotes_ext[stock.symbol.upcase].dividendPerShare %></td>
+      <td><%= @quotes_ext[stock.symbol.upcase].exDividendDate %></td>
     </tr>
   <% end %>
 </table>

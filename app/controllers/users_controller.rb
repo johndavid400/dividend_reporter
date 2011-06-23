@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   skip_before_filter :require_login, :only => [:index, :new, :create]
 
   def index
-       
     @users = User.all
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +13,7 @@ class UsersController < ApplicationController
 
     @stocks = current_user.stocks
     @quotes = YahooFinance::get_quotes( YahooFinance::StandardQuote, @stocks.map(&:symbol).join(",") )
+    @quotes_ext = YahooFinance::get_quotes( YahooFinance::ExtendedQuote, @stocks.map(&:symbol).join(",") )
     # @stocks = UserStocks.find(params[:user_id])
     @user = User.find(params[:id])
 
