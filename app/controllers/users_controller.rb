@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     @stocks = current_user.stocks
     @quotes = YahooFinance::get_quotes( YahooFinance::StandardQuote, @stocks.map(&:symbol).join(",") )
     @quotes_ext = YahooFinance::get_quotes( YahooFinance::ExtendedQuote, @stocks.map(&:symbol).join(",") )
-    # @stocks = UserStocks.find(params[:user_id])
     @user = User.find(params[:id])
 
     respond_to do |format|
@@ -76,10 +75,10 @@ class UsersController < ApplicationController
   end
 
   def unwatch
-    @stock = Stock.find(params[:id])
-    UserStock.destroy(:user_id => current_user.id, :stock_id => @stock.id)
+    @stock = UserStock.find(params[:id])
+    UserStock.destroy(@stock)
     flash[:notice] = "Stock was removed from your watch list"
-    redirect_to users_path 
+    redirect_to user_path(current_user)
   end
 
 end

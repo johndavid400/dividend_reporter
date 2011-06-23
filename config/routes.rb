@@ -6,6 +6,7 @@ DividendReporter::Application.routes.draw do
   resources :stocks 
 
   get 'stocks/:id/watch' => "stocks#watch", :as => 'stocks_watch'
+  get 'stocks/:id/unwatch' => "users#unwatch", :as => 'stocks_unwatch'
 
   resources :user_sessions
   resources :users
