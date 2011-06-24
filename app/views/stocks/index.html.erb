@@ -10,7 +10,7 @@
   </tr>
 
 <% @stocks.each do |stock| %>
-  <tr>
+  <tr class="<%= cycle("odd", "even") %>">
     <td><%= link_to @quotes[stock.symbol.upcase].symbol, stock %></td>
     <td><%= @quotes[stock.symbol.upcase].name %></td>
     <td><%= @quotes[stock.symbol.upcase].lastTrade %></td>
