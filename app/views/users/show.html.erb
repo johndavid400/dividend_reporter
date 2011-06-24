@@ -10,9 +10,12 @@
 <table>
   <tr>
     <th>Symbol</th>
-    <th>Stock Name</th>
+    <th>Company Name</th>
     <th>Last Price</th>
+    <th>Prev Close</th>
+    <th>Open</th>
     <th>Dividend/Share</th>
+    <th>Ex Date</th>
     <th>Pay Date</th>
     <th>Unwatch</th>
   </tr>
@@ -22,8 +25,11 @@
       <td><%= link_to @quotes[stock.symbol.upcase].symbol, stock %></td>
       <td><%= @quotes[stock.symbol.upcase].name %></td>
       <td><%= @quotes[stock.symbol.upcase].lastTrade %></td>
+      <td><%= @quotes[stock.symbol.upcase].previousClose %></td>
+      <td><%= @quotes[stock.symbol.upcase].open %></td>
       <td><%= @quotes_ext[stock.symbol.upcase].dividendPerShare %></td>
       <td><%= @quotes_ext[stock.symbol.upcase].exDividendDate %></td>
+      <td><%= @quotes_ext[stock.symbol.upcase].dividendPayDate %></td>
       <td><%= link_to 'Remove', stocks_unwatch_path(stock) %></td>
     </tr>
   <% end %>
