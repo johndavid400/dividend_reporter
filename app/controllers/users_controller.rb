@@ -75,8 +75,9 @@ class UsersController < ApplicationController
   end
 
   def unwatch
-    @stock = UserStock.find(params[:id])
-    UserStock.destroy(@stock)
+    @stock = Stock.find(params[:id])
+    u = UserStock.find_by_user_id_and_stock_id(current_user.id, @stock.id)
+    u.destroy
     flash[:notice] = "Stock was removed from your watch list"
     redirect_to user_path(current_user)
   end
