@@ -3,8 +3,10 @@
   <tr>
     <th>Symbol</th>
     <th>Stock Name</th>
-    <th>Last Price</th>
+    <th>Price</th>
     <th>Dividend/Share</th>
+    <th>Yield</th>
+    <th>Ex Date</th>
     <th>Pay Date</th>
     <th>Add</th>
   </tr>
@@ -15,8 +17,12 @@
     <td><%= @quotes[stock.symbol.upcase].name %></td>
     <td><%= @quotes[stock.symbol.upcase].lastTrade %></td>
     <td><%= @quotes_ext[stock.symbol.upcase].dividendPerShare %></td>
+    <td><%= @quotes_ext[stock.symbol.upcase].dividendYield %></td>
     <td><%= @quotes_ext[stock.symbol.upcase].exDividendDate %></td>
+    <td><%= @quotes_ext[stock.symbol.upcase].dividendPayDate %></td>
+
     <td><%= link_to 'Watch', stocks_watch_path(stock) %></td>
+
   </tr>
 <% end %>
 </table>
